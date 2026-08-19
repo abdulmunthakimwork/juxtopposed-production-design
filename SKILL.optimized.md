@@ -1,120 +1,127 @@
 ---
-name: juxtopposed-production-design
-description: First-principles UI/UX design framework for AI agents. Activate when tasked with building, redesigning, or auditing any user interface including landing pages, dashboards, portfolios, or applications requiring production-grade visual design.
-version: 2.0.0
-tags: [ui, ux, design, frontend, figma, accessibility, layout]
+name: juxtopposed-design-methodology
+description: UI/UX design methodology for designing, redesigning, critiquing, or improving interfaces — full-audit, structure-before-style, diagnose-before-redecorate thinking. For any design/improvement request on UIs, websites, apps, dashboards, landing pages, or design systems. Not for pure implementation without design judgment.
 ---
 
-# Juxtopposed Production Design Skill
+# UI/UX Design Methodology
 
-## CORE TRIGGERS (ACTIVATE WHEN)
-- User requests UI redesign or new interface build
-- Task involves landing pages, dashboards, portfolios, or web applications
-- Need to audit existing design for visual hierarchy or accessibility issues
-- Output must avoid generic template-looking interfaces
-- User explicitly mentions "juxtopposed", "production design", or "first-principles UI"
+Built to think like a working product designer: diagnose before decorating, structure before style, full-surface audits over spot-fixes, implementation as part of design. Based on researching the **Juxtopposed** YouTube channel (`@juxtopposed`) — known for a complete YouTube redesign (branding → all surfaces) and Figma/GSAP/Three.js design-and-build content.
+
+**One rule above all:** Have boundaries for thinking. Have no boundaries for creating. Judgment (usability, clarity, hierarchy, accessibility, feedback, intentionality) is non-negotiable. Appearance (layout, density, nav, type, color, motion, language) is never dictated. Section 5 is an optional numeric reference, never a requirement.
 
 ---
 
-## IMMUTABLE DESIGN RULES (ENFORCE ALL)
+## 1 — Understand before designing
 
-### RULE 1: INTENTIONALITY OVER ORNAMENTATION
-- Every pixel, border, padding value, and background shift must solve a specific visual/functional problem
-- If removing an element doesn't break comprehension/usability, it's noise — DELETE IT
-- No decorative elements whatsoever
+Never open with decoration or a favorite layout:
+- **Primary action:** the single most important user task here
+- **Mental model:** what users already expect from conventions in this space (deviating should be a choice, not accident)
+- **Users:** expertise, frequency, device, environment, urgency
+- **Jobs-to-be-done:** ranked by real frequency, not ease of design
+- **Friction/constraints:** tech limits, brand limits, realistic content (long text, sparse data, edge cases)
 
-### RULE 2: STRUCTURE DICTATES LAYOUT (NO UNIVERSAL TEMPLATES)
-- Content shape and user mental model determine layout archetype — NEVER default to "sidebar + cards"
-- Choose ONE archetype only from the list below:
+Underspecified requests: state a one-line assumption about the product and proceed.
 
-| LAYOUT ARCHETYPE | USE CASE CONTEXT |
-|-------------------|------------------|
-| High-Density Utility Canvas | IDEs, node editors, complex data manipulation, creation tools |
-| Asymmetric Split/Editorial | Storytelling, onboarding, portfolios, high-concept SaaS |
-| Bento Box Modular Grid | Feature overviews, multi-metric dashboards, landing page features |
-| Minimalist Centered Stream | Reading, writing, checkout, single-task flows, conversational UIs |
-| Edge Navigation Canvas | Email clients, music players, multi-view apps with persistent context |
+## 2 — Flows before screens
 
-### RULE 3: PERSONALITY THROUGH RESTRAINT
-- Brand identity = 1-2 high-conviction visual choices only (expressive typeface, unusual layout geometry, singular accent color)
-- Everything else stays ruthlessly clean and functional
-- Never clutter with multiple decorative assets
+Map the journey before the frame: entry points, primary path + alternates, decision points, feedback at every action, completion, errors/empty/loading/partial/interrupted states + recovery.
 
-### RULE 4: SUBTRACTION BEFORE ADDITION
-- When refining UI: first remove dividing lines, strip redundant labels, collapse secondary menus, un-box unnecessary containers
-- Only add new elements after subtraction is exhausted
+A beautiful screen inside a broken flow = bad product. Restructure screens, features, or navigation if the flow demands it.
+
+## 3 — Cognitive-load and structural diagnosis (redesigns)
+
+Before visual output on an existing product, name the specific failure:
+- **Border soup** — dividing lines doing whitespace's job
+- **Frankenstein navigation** — wayfinding split across inconsistent areas
+- **Shouting match** — too many elements competing for primary weight
+- **Reskin disguised as redesign** — new colors/fonts over broken structure
+
+Full redesign = systematic pass across every meaningful surface, not a spot-fix.
+
+## 4 — Information architecture before polish
+
+Organize by user understanding, not backend structure. Decide conceptual grouping, category hierarchy, progressive disclosure, and the one most important thing per screen — before any color or font.
+
+**Gut-check:** draft layout in grayscale, structural blocks only. If hierarchy doesn't hold without color, color won't fix it. Overwhelming screen? Diagnose structure first, not spacing or font size.
+
+## 5 — Visual system (optional reference, not a rule)
+
+A default under time pressure, not a requirement. Use something else if the product calls for it.
+
+- **Spacing:** 8px scale (8, 16, 24, 32, 40, 48, 64, 80); 4px for micro-spacing
+- **Type:** few steps (display/H1-H2/body/caption); **weight and color do more hierarchy work than size**. Body text floor: 14px (prefer 16px)
+- **Color:** ~60/30/10 (neutral/structural/accent). Red/green/yellow = destructive/success/warning — strong convention
+- **Elevation:** subtle shadows low, stronger for genuinely floating elements (modals, popovers)
+- **Nested radii:** outer ≈ inner + padding for concentric curves
+- **Cards:** group heterogeneous content (image+title+metadata+action); don't wrap plain text in cards
+- **Whitespace before borders:** whitespace first; subtle border only when backgrounds are identical and whitespace can't separate
+
+## 6 — Hierarchy, made intentional
+
+Communicate importance, sequence, status, next action. Mechanism is open — type, position, scale, color, whitespace, grouping, motion, density. Never impose one formula on every product.
+
+## 7 — Simplicity, applied intelligently
+
+Remove accidental complexity, not necessary complexity. Expert tools (DAW, IDE, trading dashboards) earn density. Density tracks task complexity, expertise, frequency — not a whitespace aesthetic. "Simple" ≠ removing until nothing's left.
+
+## 8 — Interaction and state
+
+Every control communicates what it does, its state, and the consequence. First-class for every interactive element: hover, focus (visible, keyboard-usable ring), active/pressed, selected, disabled, loading, success, error, empty, partial, offline, validation states. Truncation/wrapping rules for overflow text. Empty state on purpose: icon + message + primary action, not a blank rectangle.
+
+## 9 — Consistency without bureaucracy
+
+Reuse when interaction is identical. Variant when context differs. Unique when problem genuinely requires it. Don't abstract into a component until the third real instance — premature componentization wastes effort. Design systems extracted **after** real needs understood, not imposed on day one.
+
+## 10 — Accessibility and responsiveness, from the start
+
+Fold in during design: contrast ≥4.5:1 body, ≥3:1 large text, legible type, keyboard interaction, visible focus, touch targets ≥44×44px, semantic structure, motion sensitivity, color-independent meaning, clear errors.
+
+Responsive = **experience transformation**, not shrinking. Desktop/tablet/mobile may need genuinely different compositions to preserve the same goal.
+
+## 11 — Push visual identity, hard, once structure is right
+
+Once structurally sound, push identity aggressively: type, color, imagery, motion, texture, shape, rhythm → memorable and specific. Ask: *could this come from any random SaaS template?* If yes → go further.
+
+Don't follow trends by default. Glassmorphism, brutalism, bento grids, dark mode — tools, not mandates. Use only when genuinely serving this product.
+
+Design for real usage: long strings, empty states, errors, daily use, messy data, keyboard-only, slow networks.
+
+## 12 — Explore before converging
+
+Non-trivial tasks: generate multiple **structurally different** concepts before picking one. Vary IA, nav, density, visual language — not just palette/spacing. Select strongest by actual problem fit.
+
+Intentional rule-breaking welcome after conventions are understood. Never follow convention merely because common; never break merely to be different.
+
+## 13 — Self-critique before delivery (mandatory)
+
+Before presenting:
+- **Squint test:** primary action still most visually dominant?
+- **System adherence:** arbitrary values earning their place?
+- **Interaction cost:** main goal reachable without unnecessary friction?
+- **Visual noise:** borders/tints removable? If yes → remove
+- **Accessibility:** contrast, focus, touch targets checked
+- **Genericness:** specific to this product, or swappable onto a competitor?
+
+Improve rather than defend the first version.
 
 ---
 
-## EXECUTION WORKFLOW (STEP-BY-STEP)
+**Communicating decisions:** Name the problem, the choice, the tradeoff — concisely.
 
-### STEP 1: CONTAINERIZATION & ENCLOSURE (ANTI-OVERCARDING)
-FOLLOW DECISION TREE EXACTLY:
-1. FIRST: Place content directly on root background using whitespace alone (24px-48px gaps)
-2. IF elements bleed: Use subtle tonal background contrast (#FFFFFF on #F9FAFB)
-3. IF same background collision: Add 1px border with 10% opacity only
-4. ONLY use cards if elements form a singular, discrete, draggable entity
-
-### STEP 2: HIERARCHY VIA WEIGHT & SPATIAL DOMINANCE
-- MAXIMUM: 3 font weights, 4 font sizes per screen
-- Primary focal point (1 per view only): Capture attention in <1s using contrast, isolation, or accent color
-- Secondary context: font-weight: 600 at 16px
-- Tertiary metadata: 60% opacity text-muted at body size — never shrink text to stand out
-
-### STEP 3: SPATIAL RHYTHM COMPLIANCE
-- All dimensions: multiples of 8px ONLY (8, 16, 24, 32, 48, 64, 96)
-- 4px reserved EXCLUSIVELY for icon-to-label micro-gaps
-- Nested corner radii formula: Outer Radius = Inner Radius + Container Padding
-  ```css
-  /* EXAMPLE: Button inside container */
-  .button { border-radius: 8px; }
-  .container { padding: 16px; border-radius: 24px; } /* 8 + 16 = 24 ✅ */
-  ```
-
-### STEP 4: BRAND IDENTITY INJECTION (ANTI-SLOP PROTOCOL)
-1. **Typography**: One distinct display font + one ultra-readable body font (Inter, SF Pro)
-2. **Color (60-30-10 rule)**:
-   - 60%: Neutral canvas (white/black/slate)
-   - 30%: Structural hierarchy (surface tones, muted text)
-   - 10%: Accent color used ONLY on interactive triggers
-3. **Shape language**: Choose either Soft & Tactile (rounded radii, soft shadows) OR Sharp & Architectural (0px radii, high-contrast borders) — NEVER mix
+**Final standard:** Not "modern," not "template-like," not "system-compliant." Whether the interface makes the product easier to understand, use, access, and remember than a generic default — and feels specifically made for this product.
 
 ---
 
-## TECHNICAL EXECUTION SPECS
+## SOURCING
 
-### FIGMA/AUTO-LAYOUT RULES
-- Every container = dynamic flexbox (justify-content, align-items, gap)
-- Text containers: vertical auto-fit/hug only — never fixed pixel heights
-- Design tokens over hardcoded hex values:
-  ```css
-  /* REQUIRED SEMANTIC TOKENS */
-  --bg-surface-primary
-  --text-main
-  --text-muted
-  --accent-action
-  --border-subtle
-  ```
-- Atomic component composition only — no variant explosion (max 5 button variants total)
+Video transcripts were not accessible, so this file distinguishes traceable from general practice.
 
-### STATE REQUIREMENTS (ALL INTERACTIVE ELEMENTS)
-MUST define all 5 states explicitly:
-```
-Default → Hover → Pressed/Active → Focused (A11y ring) → Disabled
-```
+**Grounded in verifiable channel evidence:**
+- Full-surface redesign audit (not spot-fix) — flagship YouTube restructuring
+- Design + implementation as one discipline (Figma → code/animation)
+- Concrete, nameable friction drives redesign, not vague aesthetic upgrade
 
-### DYNAMIC CONTENT HANDLING
-- Specify truncation rules for all user-generated content: `line-clamp-2` or `text-ellipsis`
-- Skeleton loaders must match loaded grid geometry to prevent layout shift
-- Empty states = onboarding moments (icon + actionable CTA)
+**Generic industry practice (good, not channel-specific):**
+- Numeric reference system (section 5), JTBD framing, WCAG numbers, squint test, premature-componentization guidance, self-critique checklist
 
----
-
-## PRE-COMPLETION VALIDATION CHECKLIST (ALL MUST PASS)
-
-- [x] **Diversity Test**: Layout is specific to THIS product — not a generic template
-- [x] **Subtraction Test**: At least two containers/lines could be removed without degradation
-- [x] **Eye-Tracking Test**: Visual flow: Primary focal point → Core data → Actions
-- [x] **Squint Test**: Primary CTA identifiable within 500ms when squinting
-- [x] **Accessibility Test**: WCAG 2.1 AA compliant (4.5:1 body text, 3:1 large text)
-- [x] **Focus States**: All interactive elements have visible keyboard focus rings
+**Excluded:** no visual signatures from any creator carried as rules — principles-first, not style-first.
