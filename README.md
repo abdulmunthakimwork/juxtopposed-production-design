@@ -1,4 +1,4 @@
-# Juxtopposed Design Methodology
+# Design Methodology
 
 A principles-first UI/UX design methodology for AI agents — diagnose before decorating, structure before style, full-surface audits over spot-fixes.
 
@@ -15,8 +15,11 @@ Not for pure syntax/implementation questions with no design judgment (e.g. "how 
 ## Installation
 
 ```bash
-# Clone to your skills directory
-git clone https://github.com/abdulmunthakimwork/juxtopposed-production-design.git ~/.trae/skills/juxtopposed-design-methodology
+# Install via npx (recommended)
+npx skills add abdulmunthakimwork/design-methodology --skill design-methodology --yes
+
+# Or clone manually
+git clone https://github.com/abdulmunthakimwork/design-methodology.git ~/.trae/skills/design-methodology
 
 # Or use the installation script
 ./skill.sh install
@@ -52,7 +55,7 @@ Squint test, system adherence, interaction cost, visual noise, accessibility, ge
 
 ## Sourcing
 
-This methodology was developed while researching the [Juxtopposed](https://youtube.com/@juxtopposed) YouTube channel. The file distinguishes what's traceable to the channel from generic, widely-taught industry practice — see the SOURCING section in `SKILL.md`.
+Developed while researching the [Juxtopposed](https://youtube.com/@juxtopposed) YouTube channel. The methodology distinguishes what's traceable from that channel from generic, widely-taught industry practice — see the SOURCING section in `SKILL.md`.
 
 ## License
 

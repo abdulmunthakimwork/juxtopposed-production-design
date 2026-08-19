@@ -1,5 +1,5 @@
 ---
-name: juxtopposed-design-methodology
+name: design-methodology
 description: UI/UX design methodology for designing, redesigning, critiquing, or improving interfaces — full-audit, structure-before-style, diagnose-before-redecorate thinking. For any design/improvement request on UIs, websites, apps, dashboards, landing pages, or design systems. Not for pure implementation without design judgment.
 ---
 

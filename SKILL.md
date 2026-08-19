@@ -1,5 +1,5 @@
 ---
-name: juxtopposed-design-methodology
+name: design-methodology
 description: A UI/UX and digital product design methodology for designing new interfaces, redesigning existing products, critiquing designs, or reasoning through layout/hierarchy/interaction/visual-identity decisions — built around a full-audit, structure-before-style, diagnose-before-redecorate way of thinking. Use whenever asked to design, redesign, critique, or improve a UI, website, app, dashboard, or landing page, or to set up a design system/component architecture — even if the request is as loose as "make this look better" or "why does this feel like generic AI slop." Not for pure syntax/implementation questions with no design judgment involved (e.g. "how do I center a div"). Governs how to think and what to check, not what things must look like — see the file for what's mandatory (judgment, process, states, accessibility) versus optional (any specific numeric system).
 ---
 
