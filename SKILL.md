@@ -1,105 +1,145 @@
 ---
-name: juxtopposed-production-design
-description: A first-principles UI/UX design framework extracted from Juxtopposed. Teaches AI agents how to reason through visual hierarchy, layout selection, containerization, and brand identity to produce diverse, context-specific, production-ready interfaces without relying on fixed templates.
-version: 2.0.0
-tags: [ui, ux, design-principles, visual-reasoning, figma, design-systems, layout-engine]
+name: juxtopposed-design-methodology
+description: A UI/UX and digital product design methodology for designing new interfaces, redesigning existing products, critiquing designs, or reasoning through layout/hierarchy/interaction/visual-identity decisions — built around a full-audit, structure-before-style, diagnose-before-redecorate way of thinking. Use whenever asked to design, redesign, critique, or improve a UI, website, app, dashboard, or landing page, or to set up a design system/component architecture — even if the request is as loose as "make this look better" or "why does this feel like generic AI slop." Not for pure syntax/implementation questions with no design judgment involved (e.g. "how do I center a div"). Governs how to think and what to check, not what things must look like — see the file for what's mandatory (judgment, process, states, accessibility) versus optional (any specific numeric system).
 ---
 
-# Juxtopposed First-Principles UI/UX Design Skill
+# UI/UX Design Methodology
 
-## 1. Core Philosophical Invariants
-Before making any design decision, evaluate against these four immutable truths:
+## What this is, honestly
 
-1. **Intentionality Over Ornamentation:** Every pixel, border, padding value, and background shift must solve a specific visual or functional problem. If removing an element does not break comprehension or usability, it is visual noise and must be eliminated.
-2. **Structure Dictates Layout (No Universal Template):** There is no single "correct" UI layout. The shape of the content and the user's mental model dictate whether an interface should be a full-bleed canvas, an asymmetrical split, a bento grid, an editorial stream, or a high-density utility board.
-3. **Personality Through Restraint:** A distinct brand identity is not achieved by cluttering the screen with illustrations and gradients. It is built by making 1 or 2 high-conviction, opinionated visual choices (e.g., an expressive typeface, unusual layout geometry, or a singular sharp accent color) while keeping the rest of the interface ruthlessly clean and functional.
-4. **Subtraction Before Addition:** When fixing or refining a UI, your primary tool is subtraction. Remove dividing lines, strip redundant labels, collapse secondary menus, and un-box unnecessary containers before adding anything new.
+This skill was built to think the way a working product designer thinks — diagnosing before decorating, structure before style, full-surface audits instead of spot-fixes, treating implementation and animation as part of the design rather than a handoff. It was developed while researching the **Juxtopposed** YouTube channel (`@juxtopposed`), whose most documented body of work is a full, ground-up redesign of YouTube (branding → layout → explore → home → video → channel → subscriptions → library → sharing → Shorts → search), alongside Figma, GSAP, Three.js, and Spline-based design-and-implementation content.
 
----
+Read the `SOURCING` section at the end before treating any specific claim in here as "verified from her work." Video transcripts were not accessible during this research, so this file distinguishes what's actually traceable to the channel from generic, widely-taught design practice that fills the rest of the picture. Don't skip that section; it's not boilerplate, it's the part that keeps this file honest.
 
-## 2. Layout Diversity Engine (Selecting Layout Archetypes)
+## The one rule above all others
 
-Instead of defaulting to a generic "Dashboard Sidebar + Cards" layout, evaluate the content and choose the layout archetype that best serves the user's goals:
+**Have boundaries for thinking. Have no boundaries for creating.**
 
-| Layout Archetype | When to Use (Context & Intent) | Spatial Structure |
-| :--- | :--- | :--- |
-| **A. High-Density Utility / Canvas** | Complex workflows, creation tools, IDEs, node editors, heavy data manipulation. | Edge-to-edge workspaces, floating tool palettes, collapsible panels, micro-padding, high information density. |
-| **B. Asymmetric Split / Editorial** | Storytelling, onboarding, portfolio, high-concept SaaS, brand-driven web apps. | 50/50 or 60/40 directional splits, exaggerated typography scale, generous whitespace, strong visual anchors on one side. |
-| **C. Bento Box Modular Grid** | Feature overviews, multi-metric dashboards, mixed-media showcases, landing page features. | Interlocking heterogeneous grid cells (1x1, 2x1, 2x2) with unified corner radii and distinct visual weight per cell. |
-| **D. Minimalist Centered Stream** | Reading, writing, checkout, single-task flows, conversational interfaces. | Focused narrow-width container (max 680px-800px), zero sidebars, high vertical rhythm, extreme progressive disclosure. |
-| **E. Edge Navigation Canvas** | Multi-view web applications with persistent context (e.g., email clients, music players). | Fixed thin icon-rail navigation, multi-column master-detail views, fluid interior scrolling regions. |
+Judgment is non-negotiable: usability, clarity, hierarchy, accessibility, feedback, and intentionality are always in play. Appearance is open: layout, density, navigation model, typography, color, motion, and visual language are never dictated by this file. Nothing below should be read as "use this visual pattern" — every instruction here is a lens for judgment, not a template for output. Section 5 contains a numeric reference system (grid, type scale, shadow values, a radius formula) — that section is explicitly optional, a competent default to reach for under time pressure, never a law this skill enforces.
 
 ---
 
-## 3. Decision Heuristics & First-Principles Reasoning
+## 1 — Understand before you design
 
-### Heuristic A: Containerization & Enclosure (The Anti-Overcarding Principle)
-*   **The Problem:** Defaulting to putting every piece of text or data inside a white box/card with a drop shadow creates visual clutter ("Border Soup").
-*   **Decision Tree:**
-    *   *Step 1:* Try placing content directly on the root background surface using **whitespace alone** (24px–48px gaps) for separation.
-    *   *Step 2:* If background elements bleed into each other, use **subtle tonal background contrast** (e.g., `#FFFFFF` container on a `#F9FAFB` surface).
-    *   *Step 3:* Use a **border** (1px, 10% opacity) *only* when two adjacent containers share the exact same background color and spatial separation is impossible.
-    *   *Step 4:* Use a **card / box container** *only* when the enclosed elements form a singular, discrete, draggable, or distinct entity (e.g., a product card, a user profile block, an isolated widget).
+Never open with decoration or a favorite layout.
 
-### Heuristic B: Hierarchy via Weight & Spatial Dominance (Not Just Size)
-*   **The Problem:** Over-relying on huge text sizes to make things stand out distorts layout balance.
-*   **Decision Tree:**
-    *   **Primary Focus (Focal Point):** Must capture attention in < 1 second. Create focus using *Contrast Ratio*, *Spatial Isolation* (whitespace surrounding it), or *Accent Color*. (Limit to 1 per view).
-    *   **Secondary Context:** Use typography weight (e.g., `Font-Weight: 600` at 16px) and high contrast.
-    *   **Tertiary Metadata:** Use subdued color tokens (e.g., `text-muted`, 60% opacity) at standard body size rather than making text illegibly small.
-    *   *Rule:* Never use more than **3 font weights** and **4 font sizes** on a single screen.
+- **Primary action:** what's the single most important thing the user needs to do here?
+- **Mental model:** what does the user already expect from established conventions in this space? (Deviating from a strong convention should be a choice, not an accident.)
+- **Users and context:** expertise level, frequency of use, device, environment, urgency.
+- **Jobs-to-be-done:** the tasks the product must let someone complete, ranked by real frequency and importance — not by what's easiest to design.
+- **Existing friction and constraints:** technical limits, brand constraints, realistic content (long text, sparse data, edge cases).
 
-### Heuristic C: Spatial Rhythm & Mathematical Harmony
-*   **The 8-Point Grid Invariant:** All layout dimensions, gap properties, padding, and margins must strictly evaluate to a multiple of 8 ($8, 16, 24, 32, 48, 64, 96\text{px}$). Use $4\text{px}$ exclusively for micro-gaps (e.g., icon-to-label spacing).
-*   **Nested Corner Radii Formula:** 
-    *   Never use arbitrary border-radii on nested elements.
-    *   $$\text{Radius}_{\text{Outer}} = \text{Radius}_{\text{Inner}} + \text{Padding}_{\text{Container}}$$
-    *   *Example:* If an inner button has a radius of $8\text{px}$ inside a container with $16\text{px}$ padding, the container's radius **must** be $24\text{px}$.
+If the request is underspecified, state a reasonable one-line assumption about the product and its users and proceed — don't stall on a clarifying question unless the ambiguity is severe enough that any design would be a guess.
 
-### Heuristic D: Personality & Identity Infusion (Anti-Slop Protocol)
-*   **The Problem:** AI outputs often look like generic, soul-less Tailwind/Shadcn UI templates.
-*   **Decision Tree to Inject Brand Identity:**
-    1.  **Typography Contrast:** Pair a highly distinct Display/Header font (e.g., Serif, Geometric Mono, Neo-Grotesque, Brutalist Display) with an ultra-readable Neutral Body font (Inter, SF Pro, System UI).
-    2.  **Color Intentionality (60-30-10):**
-        *   `60%` Neutral canvas (White/Black/Slate).
-        *   `30%` Structural hierarchy (Surface tones, muted text).
-        *   `10%` Expressive Accent (Electric Lime, International Klein Blue, Vivid Orange, Warm Amber). Use accent *sparingly*—only on interactive triggers and active states.
-    3.  **Shape Language Intent:** Decide early if the UI is **Soft & Tactile** (rounded radii, soft ambient shadows, warm neutrals) or **Sharp & Architectural** (0px radii, high-contrast borders, dark surfaces, mono fonts). Do not mix shape languages arbitrarily.
+## 2 — Flows before screens
+
+Design the journey before the frame. For each significant task, map entry points, the primary path and alternates, decision points, feedback at every action, completion, and errors/empty/loading/partial/interrupted states and recovery.
+
+A beautiful screen inside a broken flow is a bad product. Combine screens, split a screen into steps, remove a feature, add a contextual action, or restructure navigation entirely if the flow demands it — the flow is allowed to change the product's shape.
+
+## 3 — Cognitive-load and structural diagnosis (redesigns)
+
+Before generating any visual output on an existing product, name the specific failure — don't just say it "needs a refresh":
+
+- **Border soup** — too many dividing lines doing the job whitespace should do.
+- **Frankenstein navigation** — wayfinding split across multiple inconsistent areas instead of one coherent system.
+- **Shouting match** — too many elements competing for primary visual weight, so nothing actually reads as primary.
+- **Reskin disguised as redesign** — new colors/fonts over the same broken structure. If the underlying flow or hierarchy is wrong, fix the structure; paint doesn't fix structure.
+
+A full redesign works best as a systematic pass across every meaningful surface of the product, not a spot-fix on the one screen someone complained about — go surface by surface: what's this for, what's actually wrong with it today, what changes, and why.
+
+## 4 — Information architecture before polish
+
+Organize information by what the user understands and needs, not by backend structure or org chart. Decide what groups together conceptually, what hierarchy of categories helps someone navigate, what's shown now versus revealed on demand (progressive disclosure), and what the one most important thing on this screen is — before any color or font is chosen.
+
+A useful gut-check before styling anything: **draft the layout in grayscale, structural blocks only.** If the hierarchy doesn't hold with all color removed, color will not fix it — that's a structure problem, not a palette problem. If a screen feels overwhelming, diagnose the structure first; shrinking font size or adding whitespace is a symptom-level fix.
+
+## 5 — Visual system (optional reference, not a rule)
+
+Everything in this section is a **default you may reach for**, not something this skill requires. If a product's problem calls for something else — an irregular grid, an unconventional type scale, decorative shadows, asymmetric radii — use that instead. The value of a system like this is speed and internal consistency under time pressure, not correctness.
+
+- **Spacing:** an 8px-based scale (8, 16, 24, 32, 40, 48, 64, 80), with 4px allowed for micro-spacing (icon-to-label gaps), is a common, well-tested default — not because it's "correct" but because it removes arbitrary micro-decisions and gives design/dev a shared vocabulary.
+- **Type:** a small number of steps (e.g. display/H1-H2/body/caption) with **weight and color doing more hierarchy work than size alone** — a reasonable default for legibility. A hard floor around 14px (prefer 16px) for body text is a real accessibility consideration, not a style preference — a 12px light-gray body is an anti-pattern regardless of aesthetic.
+- **Color allocation:** a large-neutral / structural-secondary / small-accent split (often quoted as roughly 60/30/10) is one workable way to keep an accent color meaningful — don't burn the accent on things that don't need attention. Red/green/yellow carrying destructive/success/warning meaning is a strong convention; breaking it without a very good reason will genuinely confuse users.
+- **Elevation:** if using shadows, keep them nearly invisible for low-elevation surfaces (subtle, low-opacity) and reserve stronger elevation for things that are genuinely floating above content (modals, popovers) — depth should come from context and z-order more than shadow darkness.
+- **Nested radii:** if using rounded corners on nested containers, `outer radius ≈ inner radius + padding` keeps curves visually concentric instead of looking mismatched — a useful formula to know, not a mandate to round everything.
+- **Cards:** group genuinely heterogeneous content (image + title + metadata + action) in a card; don't wrap plain paragraphs or simple list rows in cards just for consistency — let text sit on the surface.
+- **Whitespace before borders:** try separating sections with generous whitespace first; reach for a subtle border only when backgrounds are visually identical and whitespace alone can't create separation. Avoid heavy/pure-black borders outside a deliberately brutalist direction.
+
+## 6 — Hierarchy, made intentional
+
+The interface must communicate importance, sequence, status, and next action. The mechanism is open — typography, position, scale, color, whitespace, grouping, motion, or density itself — pick whichever actually creates the right hierarchy for this content. Never impose one hierarchy formula ("big hero, three feature cards") on every product; a trading terminal, a children's game, and a legal document viewer all need real hierarchy, and it will look nothing alike across the three.
+
+## 7 — Simplicity, applied intelligently
+
+Remove **accidental** complexity, not necessary complexity. Complex tools for expert users may correctly be dense — a DAW, a spreadsheet, an IDE, or a trading dashboard earns density a consumer onboarding flow does not. Density should track task complexity, user expertise, and frequency of use, not a fixed aesthetic preference for whitespace. "Modern" doesn't mean rounded corners and gradients; "simple" doesn't mean removing until nothing's left.
+
+## 8 — Interaction and state
+
+Every control should communicate what it does, its current state, and the consequence of using it. Novel interaction models are welcome, but must resolve into understanding fast through affordance, context, and feedback.
+
+Treat these as first-class requirements for every interactive element, not an afterthought: hover, focus (a visible, keyboard-usable focus ring — not just a mouse hover effect), active/pressed, selected, disabled, loading, success, error, empty, partial, offline, and validation states. Define truncation or wrapping behavior for any user-generated text that could overflow. Design the empty state on purpose — an illustration or icon, a helpful message, and a clear primary action — not just a blank rectangle.
+
+## 9 — Consistency without bureaucracy
+
+Reuse a pattern when the underlying interaction is genuinely the same. Use a variant when context differs; build something unique when the problem genuinely requires it. A practical rule of thumb: don't abstract something into a reusable component until you've built the same pattern in real context a third time — premature componentization (a 40-variant component built before anyone's sure the pattern is right) wastes effort and locks in guesses. Design systems and tokens should be extracted **after** the product's real needs are understood, not imposed on day one.
+
+## 10 — Accessibility and responsiveness, from the start
+
+Fold these in during design, not as a final pass: contrast (aim for at least 4.5:1 for body text), legible type, keyboard interaction, visible focus states, touch targets sized around at least 44×44px, semantic structure, motion sensitivity, color-independent meaning, and clear error communication.
+
+Responsive design is **experience transformation**, not shrinking. Desktop, tablet, and mobile may need genuinely different compositions, navigation models, and hierarchies to preserve the same user goal — not a squeezed single column of the same layout.
+
+## 11 — Push visual identity, hard, once structure is right
+
+Once the experience is structurally sound, push identity aggressively — typography, color, imagery, motion, texture, shape, rhythm should combine to make the product memorable and specific. Interrogate your own output: *could this have come from any random SaaS template?* If yes, that's a signal to go further, not a stopping point. Generic-slop defaults — an unexamined Inter/system-font, white background, light-gray-border, default-blue-button combination applied without any thought to this product's actual identity — are the thing to actively fight, not a neutral starting point.
+
+Don't follow trends by default. Glassmorphism, brutalism, neumorphism, bento grids, oversized type, dark mode, floating nav — tools, none mandatory, none inherently good. Use one only when it genuinely serves this specific product's problem.
+
+Design for real usage, not a screenshot: long strings, empty states, error states, repeated daily use, messy real data, keyboard-only use, slow networks. That's the actual test, not how it looks in one idealized mock.
+
+## 12 — Explore before converging
+
+For any non-trivial task, generate multiple **structurally different** concepts before picking one — not the same layout recolored. Vary information architecture, navigation model, density, and visual language, not just palette and spacing. Select the strongest direction based on the actual problem, not novelty or familiarity for their own sake. Be willing to discard a first idea, including a good one, if a later concept serves the problem better.
+
+Intentional rule-breaking is welcome once conventions are understood. Never follow a convention merely because it's common; never break one merely to be different — break it when it produces a measurably clearer, faster, more memorable, or more enjoyable result here.
+
+## 13 — Self-critique before delivery (mandatory, not optional polish)
+
+Before presenting a design, inspect it adversarially:
+
+- **Squint test:** blurred or at a glance, is the primary action still the most visually dominant thing?
+- **System adherence:** did an arbitrary value creep in (a random font size, an off-palette hex) that isn't earning its place? If so, either consolidate it to the system or justify why this is the exception.
+- **Interaction cost:** can the user reach the screen's main goal without unnecessary friction, scrolling, or hunting?
+- **Visual noise:** can a border, background tint, or dividing line be removed and the layout still make sense? If yes, remove it.
+- **Accessibility:** contrast, focus visibility, touch target size — checked, not assumed.
+- **Genericness:** is the visual identity actually specific to this product, or could it be swapped onto a competitor's product without anyone noticing?
+
+Improve the design in response rather than defending the first version.
+
+## Communicating decisions
+
+Explain major decisions, tradeoffs, and what changed and why — concisely and in plain language, without needing to expose step-by-step internal reasoning. A good explanation names the problem, the choice made, and the tradeoff accepted; it doesn't just describe what was built.
+
+## The final standard
+
+Not "does this look modern." Not "does this look like a template." Not "does this follow a design system." The standard is whether the interface makes the product easier to understand, easier to use, more efficient, more accessible, more coherent, more emotionally appropriate to its purpose, and more memorable than a generic default would have been. It should feel specifically made for this product.
 
 ---
 
-## 4. Figma & Technical Execution Principles
+## SOURCING — what's actually traceable to Juxtopposed vs. general practice
 
-When specifying designs or outputting frontend layout specs:
+Read this before treating anything above as "verified from her work." Video transcripts from the channel were not directly accessible during research (YouTube blocks automated fetching of feed/video content), so nothing here should be taken as a direct quote or confirmed teaching unless stated as such.
 
-*   **Auto Layout Mental Model:** View every container as a dynamic Flexbox (`Flex-Direction`, `Justify-Content`, `Align-Items`, `Gap`). Never define fixed pixel heights on text containers—use `Vertical Auto-Fit / Hug` and `Horizontal Fill-Container`.
-*   **Design Tokens over Hardcoded Hex Values:** 
-    *   Define colors by semantic role (`bg-surface-primary`, `text-main`, `text-muted`, `accent-action`, `border-subtle`).
-    *   Allows instant switching between light mode, dark mode, and high-contrast accessibility modes without refactoring layout.
-*   **Component Composition over Variant Explosion:**
-    *   Do not create 50 unique button variants. Build atomic primitives and compose them using slot architecture or simple boolean visibility props.
+**What's grounded in verifiable channel evidence** (the channel's self-description, its stated subject-matter tags, and the well-documented public structure of its flagship redesign case study):
 
----
+- **Redesign as a full-surface audit, not a spot-fix.** The flagship YouTube redesign restructures an entire product surface by surface in one continuous pass (branding → layout → explore → home → video → channel → subscriptions → library → sharing → Shorts → search) rather than polishing one screen. Section 3's insistence on going surface-by-surface, and its framing of naming a specific, concrete failure rather than vaguely "needing a refresh," draws directly on that.
+- **Design and implementation as one discipline.** The channel's declared subject matter spans Figma design work *and* hands-on frontend implementation and animation (CSS, JavaScript, GSAP, Three.js, Spline) — a design isn't treated as finished until it's built and moves. This grounds the emphasis throughout on states, motion, and interaction as core material (section 8), not a final layer.
+- **Concrete, nameable friction drives the redesign, not vague aesthetic upgrade.** Publicly documented specifics of the flagship redesign (consolidating scattered subscription controls, restructuring comment readability, surfacing filters more directly, persistent/sticky elements for continuity) are each a response to a named problem. This supports section 3's instruction to diagnose a specific failure before touching anything.
 
-## 5. Production Realities & Edge-Case Safeguards
+**Generic, widely-taught industry practice — not attributable to this channel specifically, included because it's good practice, not because it was observed on the channel:**
 
-A layout is broken if it only works with perfect 3-word titles and ideal images.
+- The entire numeric reference system in section 5 — the 8px spacing scale, the 60/30/10 color allocation, specific shadow opacity values, the nested-radii formula, semantic red/green/yellow — are standard, decades-old design-system conventions taught across the industry (design systems books, UX Planet, countless bootcamps). No evidence ties these specific numbers to this channel; they're included as a genuinely useful optional default, correctly labeled as generic rather than hers.
+- Jobs-to-be-done framing, WCAG contrast/touch-target numbers, the squint test, premature-componentization guidance, and the self-critique checklist are standard product-design and accessibility practice, not channel-specific.
 
-1. **Text Overflows & Variable Content:** Always specify truncation rules (`line-clamp-2` or `text-ellipsis`) for dynamic user input.
-2. **State Complete Architecture:** Every interactive element MUST explicitly define 5 states:
-   - `Default` $\rightarrow$ `Hover` $\rightarrow$ `Pressed/Active` $\rightarrow$ `Focused (A11y Ring)` $\rightarrow$ `Disabled`
-3. **Empty & Loading States:**
-   - Skeleton screens must match the exact grid geometry of the loaded state (prevent layout shifts).
-   - Empty states should act as onboarding moments (Illustration/Icon + Actionable CTA).
-
----
-
-## 6. Self-Critique & Layout Diversity Interrogation Loop
-
-Before declaring a design complete, run this self-interrogation. If any test fails, refactor immediately.
-
-- [ ] **The Diversity Test:** Does this layout look specifically designed for *this specific product*, or did I just generate a generic dashboard/landing page template?
-- [ ] **The Subtraction Test:** Can I remove at least two structural containers, background panels, or divider lines without degrading usability?
-- [ ] **The Eye-Tracking Test:** Does the eye naturally move from Primary Focal Point $\rightarrow$ Core Data $\rightarrow$ Actions, or is visual attention scattered across competing elements?
-- [ ] **The Squint Test:** Squint your eyes. Is the primary call-to-action clearly identifiable within 500 milliseconds?
-- [ ] **The Accessibility & Contrast Test:** Does all text meet WCAG 2.1 AA contrast requirements (minimum 4.5:1 for body text, 3:1 for large display text)? Are focus states visible for keyboard navigation?
+**Explicitly excluded:** no visual signature — specific component shapes, color choices, type pairings, spacing rhythms, or layout motifs — from this or any creator was carried into this skill as a rule. Those are one creator's choices for specific projects, not transferable principles, and encoding them as law would defeat the point of a principles-first methodology.
